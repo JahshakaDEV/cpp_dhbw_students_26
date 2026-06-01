@@ -9,7 +9,7 @@ public:
    {
    }
 
-   ~Shape()
+   virtual ~Shape()
    {
    }
 
@@ -22,6 +22,13 @@ public:
    {
       m_height = height;
    }
+
+   void printArea()
+   {
+      std::cout << "Area: " << getArea() << std::endl;
+   }
+
+   virtual double getArea() = 0;
 
    // Can be changed only by child classes (not by any other)
 protected:
@@ -38,14 +45,9 @@ public:
    {
    }
 
-   double getArea()
+   double getArea() override
    {
       return m_width * m_height;
-   }
-
-   void printArea()
-   {
-      std::cout << "Rectangle Area: " << getArea() << std::endl;
    }
 };
 
@@ -58,25 +60,24 @@ public:
    {
    }
 
-   double getArea()
+   double getArea() override
    {
       return m_width * m_height / 2.0;
    }
-
-   void printArea()
-   {
-      std::cout << "Triangle Area: " << getArea() << std::endl;
-   }
 };
+
+void printShapeArea(Shape &shape)
+{
+   shape.printArea();
+}
 
 int main()
 {
    Rectangle rect(10, 20);
    Triangle tri(10, 20);
 
-   rect.printArea();
-   tri.printArea();
+   printShapeArea(rect);
+   printShapeArea(tri);
 
    return 0;
 }
-
