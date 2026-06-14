@@ -24,7 +24,7 @@ void getSensorInputs(SensorData &sensorData)
 
 double calculateAbsoluteHumidity(const SensorData &sensorData)
 {
-    const double numerator = MAGNUS_BASE_HPA * std::exp((MAGNUS_COEFF_A * sensorData.temperature) / (sensorData.temperature + MAGNUS_COEFF_B_C)) * sensorData.relativHumidity * HUMIDITY_CONVERSION_FACTOR;
+    const double numerator = MAGNUS_BASE_HPA * std::exp((MAGNUS_COEFF_A * sensorData.temperature) / (sensorData.temperature + MAGNUS_COEFF_B_C)) * sensorData.relativeHumidity * HUMIDITY_CONVERSION_FACTOR;
     const double denominator = KELVIN_OFFSET + sensorData.temperature;
     const double absoluteHumidity = numerator / denominator;
     return absoluteHumidity;
