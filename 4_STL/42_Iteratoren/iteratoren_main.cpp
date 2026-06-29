@@ -15,20 +15,36 @@ int main()
 
     // a) range-based-for loop
     // TODO
+    myContainer.push_back(" - ranged-based-for loop");
+    for (std::string &str : myContainer) {
+        std::cout << str;
+    }
+    std::cout << std::endl;
+    myContainer.pop_back();
 
     //iterator access
     // TODO
+    auto container_iterator = myContainer.begin();
     std::cout << "First element: " << *container_iterator << std::endl;
     std::cout << "Second element: " << *(++container_iterator) << std::endl;
+    
 
     // b) iterator-based loop
-    // TODO
+    myContainer.push_back(" - iterator-based-for-loop");
+    for (auto it = myContainer.begin(); it < myContainer.end(); it++) {
+        std::cout << *it;
+    }
+    std::cout << std::endl;
 
     // c1) for_each loop
-    // TODO
+    myContainer.push_back(" - for_each loop");
+    std::for_each(myContainer.begin(), myContainer.end(), printHelper);
+    std::cout << std::endl;
 
     // c2) for_each loop with lambda
-    // TODO
+    myContainer.push_back(" - for_each loop");
+    std::for_each(myContainer.begin(), myContainer.end(), [](std::string &str) {std::cout << str;});
+    std::cout << std::endl;
 
     return 0;
 }
